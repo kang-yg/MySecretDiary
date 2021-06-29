@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MySecretDiary</string>
+
+    <string name="fail">실패</string>
+</resources>
