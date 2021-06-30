@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="blue">#3498DB</color>
+    <color name="red">#FF0000</color>
 
     <color name="NumberPicker_Background">#A0A0A0</color>
     <color name="Lock_Background">#CCCCCC</color>
