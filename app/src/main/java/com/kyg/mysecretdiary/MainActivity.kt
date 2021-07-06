@@ -2,6 +2,7 @@ package com.kyg.mysecretdiary
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MotionEvent
@@ -81,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 if (checkPassword()) {
                     // 비밀번호가 맞은 경우
-
+                    startActivity(Intent(this, DiaryActivity::class.java))
                 } else {
                     // 비밀번호가 틀린 경우
                     val titleFromResource = resources.getString(R.string.PASSWORD_FAIL_TITLE)
@@ -94,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setChangePasswordButton() {
-        changePasswordButton.setOnTouchListener { v, event ->
+        changePasswordButton.setOnTouchListener { _, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> {
                     if (!changePasswordButton.isPressed) {
@@ -102,12 +103,14 @@ class MainActivity : AppCompatActivity() {
                         if (checkPassword()) {
                             changePasswordButton.isPressed = !changePasswordButton.isPressed
                         } else {
-                            val titleFromResource = resources.getString(R.string.PASSWORD_FAIL_TITLE)
-                            val messageFromResource = resources.getString(R.string.PASSWORD_FAIL_CONTENT)
+                            val titleFromResource =
+                                resources.getString(R.string.PASSWORD_FAIL_TITLE)
+                            val messageFromResource =
+                                resources.getString(R.string.PASSWORD_FAIL_CONTENT)
                             showAlertDialog(titleFromResource, messageFromResource)
                         }
                     } else {
-                        // 비밀번호 변경이 비활성화된 상태
+                        // 비밀번호 변경이 활성화된 상태
                         sharedPreference.edit().putString(
                             PASSWORD_KEY,
                             "${numberPicker1.value}${numberPicker2.value}${numberPicker3.value}"
